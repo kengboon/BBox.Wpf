@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="BBox.Wpf.BBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid ToolTip="{Binding Path=Text, ElementName=CTRL_Name}">
+        <TextBlock x:Name="CTRL_Name" FontSize="12" FontWeight="DemiBold" 
+                   Foreground="{Binding Path=BorderBrush, ElementName=CTRL_Shape}" Margin="0,-15"/>
+        <Canvas x:Name="CTRL_Canvas">
+            <Canvas.LayoutTransform>
+                <RotateTransform x:Name="TRANS_Rotate" Angle="0"/>
+            </Canvas.LayoutTransform>
+            <Border x:Name="CTRL_Shape"
+                    BorderBrush="LimeGreen" BorderThickness="2"
+                    Margin="{Binding Path=BorderThickness, ElementName=CTRL_Adorner}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Rectangle Fill="Transparent" MouseLeftButtonDown="Shape_MouseLeftButtonDown"/>
+            </Border>
+            <Border x:Name="CTRL_Adorner" Visibility="Hidden"
+                    BorderThickness="1" BorderBrush="LightBlue"
+                    Width="{Binding Path=ActualWidth, ElementName=CTRL_Canvas}"
+                    Height="{Binding Path=ActualHeight, ElementName=CTRL_Canvas}"/>
+            <Ellipse x:Name="CTRL_ResizeThumb_C" Fill="{Binding Path=BorderBrush, ElementName=CTRL_Adorner}"
+                     Width="8" Height="8" Cursor="SizeAll" Visibility="Hidden"
+                     MouseLeftButtonDown="ResizeThumb_MouseLeftButtonDown"
+                     MouseLeftButtonUp="ResizeThumb_MouseLeftButtonUp"
+                     MouseMove="ResizeThumb_MouseMove"/>
+            <Ellipse x:Name="CTRL_ResizeThumb_N" Fill="{Binding Path=BorderBrush, ElementName=CTRL_Adorner}"
+                     Width="{Binding Path=Width, ElementName=CTRL_ResizeThumb_C}"
+                     Height="{Binding Path=Height, ElementName=CTRL_ResizeThumb_C}"
+                     Cursor="SizeNS" Visibility="Hidden"
+                     MouseLeftButtonDown="ResizeThumb_MouseLeftButtonDown"
+                     MouseLeftButtonUp="ResizeThumb_MouseLeftButtonUp"
+                     MouseMove="ResizeThumb_MouseMove"/>
+            <Ellipse x:Name="CTRL_ResizeThumb_E" Fill="{Binding Path=BorderBrush, ElementName=CTRL_Adorner}"
+                     Width="{Binding Path=Width, ElementName=CTRL_ResizeThumb_C}"
+                     Height="{Binding Path=Height, ElementName=CTRL_ResizeThumb_C}"
+                     Cursor="ScrollWE" Visibility="Hidden"
+                     MouseLeftButtonDown="ResizeThumb_MouseLeftButtonDown"
+                     MouseLeftButtonUp="ResizeThumb_MouseLeftButtonUp"
+                     MouseMove="ResizeThumb_MouseMove"/>
+            <Ellipse x:Name="CTRL_ResizeThumb_W" Fill="{Binding Path=BorderBrush, ElementName=CTRL_Adorner}"
+                     Width="{Binding Path=Width, ElementName=CTRL_ResizeThumb_C}"
+                     Height="{Binding Path=Height, ElementName=CTRL_ResizeThumb_C}"
+                     Cursor="ScrollWE" Visibility="Hidden"
+                     MouseLeftButtonDown="ResizeThumb_MouseLeftButtonDown"
+                     MouseLeftButtonUp="ResizeThumb_MouseLeftButtonUp"
+                     MouseMove="ResizeThumb_MouseMove"/>
+            <Ellipse x:Name="CTRL_ResizeThumb_S" Fill="{Binding Path=BorderBrush, ElementName=CTRL_Adorner}"
+                     Width="{Binding Path=Width, ElementName=CTRL_ResizeThumb_C}"
+                     Height="{Binding Path=Height, ElementName=CTRL_ResizeThumb_C}"
+                     Cursor="SizeNS" Visibility="Hidden"
+                     MouseLeftButtonDown="ResizeThumb_MouseLeftButtonDown"
+                     MouseLeftButtonUp="ResizeThumb_MouseLeftButtonUp"
+                     MouseMove="ResizeThumb_MouseMove"/>
+        </Canvas>
+    </Grid>
+</UserControl>
