@@ -45,20 +45,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BBox.xaml.cs">
+    <Compile Include="Controls\BBox.xaml.cs">
       <DependentUpon>BBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageCanvas.xaml.cs">
+    <Compile Include="Controls\ImageCanvas.xaml.cs">
       <DependentUpon>ImageCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="BBox.xaml">
+    <Page Include="Controls\BBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ImageCanvas.xaml">
+    <Page Include="Controls\ImageCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
