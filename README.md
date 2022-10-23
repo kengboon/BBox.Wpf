@@ -25,5 +25,5 @@ Movable, resizable bounding box WPF control on image canvas.
 4. At your WPF project, add reference to the built DLL.
 5. At your XAML, add namespace ```xmlns:bbox="clr-namespace:BBox.Wpf.Controls;assembly=BBox.Wpf"``` to use controls.
 
-## If this is helpful for you
+## If this is useful
 <a href="https://ko-fi.com/woolf42"><img src="https://user-images.githubusercontent.com/5046671/197377067-ce6016ae-6368-47b6-a4eb-903eb7b0af9c.png" width="200" alt=""/></a>
