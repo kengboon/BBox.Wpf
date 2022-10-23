@@ -221,7 +221,7 @@ namespace BBox.Wpf.Controls
                 }
                 else if (control == CTRL_ResizeThumb_E)
                 {
-                    var top = Canvas.GetTop(this) + moveDown;
+                    var top = Canvas.GetTop(this);
                     var left = Canvas.GetLeft(this);
                     var width = CTRL_Shape.Width + moveRight;
                     var height = CTRL_Shape.Height;
