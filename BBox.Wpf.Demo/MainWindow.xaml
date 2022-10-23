@@ -3,10 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:control="clr-namespace:BBox.Wpf"
+        xmlns:control="clr-namespace:BBox.Wpf.Controls;assembly=BBox.Wpf"
         mc:Ignorable="d"
-        Title="BBox.Wpf Demo (C) kengboon" Height="450" Width="800">
+        Title="BBox.Wpf Demo Program" Height="400" Width="600"
+        Loaded="Window_Loaded">
     <Grid>
-        <control:ImageCanvas/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <control:ImageCanvas x:Name="CTRL_ImageCanvas" Background="Black"
+                             ImageSource="../Images/dog_bike_car.jpg"/>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="BBox Type:" Margin="5,2.5"/>
+            <ComboBox Margin="5,2.5" x:Name="CTRL_BoxType"/>
+            <TextBlock Text="BBox Name:" Margin="5,2.5"/>
+            <TextBox x:Name="CTRL_BoxName" Margin="5,2.5"/>
+            <Button Content="Add" Click="AddDefaultBBoxButton_Click" Margin="5,2.5"/>
+            <Separator Height="1" Margin="5"/>
+            <Button Content="Delete selected" Click="RemoveSelectedBBoxButton_Click" Margin="5,2.5"/>
+            <Separator Height="1" Margin="5"/>
+            <Button Content="Reset Demo" Click="ResetButton_Click" Margin="5,2.5"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -51,6 +51,7 @@
     <Compile Include="Controls\ImageCanvas.xaml.cs">
       <DependentUpon>ImageCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enums\BBoxType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

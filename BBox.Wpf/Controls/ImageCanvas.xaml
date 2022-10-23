@@ -5,15 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="CTRL_Container" Background="Transparent" Margin="5">
+    <Grid x:Name="CTRL_Container" Background="Transparent">
         <Canvas x:Name="CTRL_Canvas"
                 Width="{Binding Path=ActualWidth, ElementName=CTRL_Image}"
-                Height="{Binding Path=ActualHeight, ElementName=CTRL_Image}">
-            <Image x:Name="CTRL_Image" Source="{Binding ImageSrc}"
+                Height="{Binding Path=ActualHeight, ElementName=CTRL_Image}"
+                SizeChanged="CTRL_Canvas_SizeChanged">
+            <Image x:Name="CTRL_Image"
                    Canvas.Left="0" Canvas.Top="0"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    MaxHeight="{Binding Path=ActualHeight, ElementName=CTRL_Container}"
-                   MaxWidth="{Binding Path=ActualWidth, ElementName=CTRL_Container}"/>
+                   MaxWidth="{Binding Path=ActualWidth, ElementName=CTRL_Container}"
+                   MouseLeftButtonDown="CTRL_Image_MouseLeftButtonDown"/>
         </Canvas>
     </Grid>
 </UserControl>
