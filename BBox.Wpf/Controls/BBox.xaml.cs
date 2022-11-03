@@ -109,7 +109,7 @@ namespace BBox.Wpf.Controls
         }
 
         private Color m_Color;
-        protected Color Color
+        public Color Color
         {
             get => m_Color;
             set

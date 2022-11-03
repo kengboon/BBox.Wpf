@@ -51,12 +51,6 @@ namespace BBox.Wpf.Controls
         }
 
         /// <summary>
-        /// Default bounding box color. Color of individual bounding box still can be changed.
-        /// </summary>
-        public Brush DefaultBBoxColor { get; set; } = new SolidColorBrush(Colors.LimeGreen);
-        public double DefaultBBoxThickness { get; set; } = 2;
-
-        /// <summary>
         /// The collection of bounding boxes for object references.
         /// Add or remove to this collection should also trigger change to canvas.
         /// </summary>
@@ -244,6 +238,7 @@ namespace BBox.Wpf.Controls
 
         public BBoxType BBoxTypeToAdd { get; set; } = BBoxType.None;
         public string BBoxNameToAdd { get; set; } = string.Empty;
+        public Color BBoxColorToAdd { get; set; } = Colors.LimeGreen;
 
         private void CTRL_EditOverlay_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -255,6 +250,7 @@ namespace BBox.Wpf.Controls
 
                 var pos = e.GetPosition(control);
                 var bbox = new BBox(BBoxTypeToAdd, !string.IsNullOrEmpty(BBoxNameToAdd) ? BBoxNameToAdd : BBoxTypeToAdd.ToString());
+                bbox.Color = BBoxColorToAdd;
                 BBoxes.Add(bbox);
 
                 bbox.UpdateFromDisplay(pos.Y, pos.X, 1, 1);

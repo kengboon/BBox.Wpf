@@ -1,9 +1,11 @@
 ﻿<Application x:Class="BBox.Wpf.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BBox.Wpf.Demo"
+             xmlns:converters="clr-namespace:BBox.Wpf.Demo.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <converters:ColorToSolidColorBrushValueConverter x:Key="colorToBrush"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

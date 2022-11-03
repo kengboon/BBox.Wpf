@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="BBox.Wpf Demo Program" Height="400" Width="600"
         Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -15,14 +21,27 @@
         <bbox:ImageCanvas x:Name="CTRL_ImageCanvas" Background="Black"
                              ImageSource="../Images/dog_bike_car.jpg"/>
         <StackPanel Grid.Column="1">
-            <TextBlock Text="BBox Type:" Margin="5,2.5"/>
+            <TextBlock Text="Add" FontWeight="Bold"/>
+            <TextBlock Text="Type:"/>
             <ComboBox Margin="5,2.5" x:Name="CTRL_BoxType"/>
-            <TextBlock Text="BBox Name:" Margin="5,2.5"/>
-            <TextBox x:Name="CTRL_BoxName" Margin="5,2.5"/>
-            <Button Content="Add" Click="AddDefaultBBoxButton_Click" Margin="5,2.5"/>
+            <TextBlock Text="Name:"/>
+            <TextBox x:Name="CTRL_BoxName" Margin="5,2" Padding="2.5"/>
+            <TextBlock Text="Color:"/>
+            <ComboBox Margin="5,2.5" x:Name="CTRL_Color">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Rectangle Width="10" Height="10" Fill="{Binding Color, Converter={StaticResource colorToBrush}}" DockPanel.Dock="Left" Margin="2"/>
+                            <TextBlock Text="{Binding ColorCode}" Margin="5,0" DockPanel.Dock="Right"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Separator Height="1" Margin="5"/>
+            <TextBlock Text="Delete" FontWeight="Bold"/>
             <Button Content="Delete selected" Click="RemoveSelectedBBoxButton_Click" Margin="5,2.5"/>
             <Separator Height="1" Margin="5"/>
+            <TextBlock Text="Reset" FontWeight="Bold"/>
             <Button Content="Reset Demo" Click="ResetButton_Click" Margin="5,2.5"/>
         </StackPanel>
     </Grid>
