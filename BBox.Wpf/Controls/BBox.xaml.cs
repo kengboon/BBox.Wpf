@@ -123,6 +123,20 @@ namespace BBox.Wpf.Controls
         #endregion
 
         #region Handle Resize
+        private bool m_CanResize;
+        public bool CanResize
+        {
+            get => m_CanResize;
+            set
+            {
+                m_CanResize = value;
+                if (!m_CanResize)
+                {
+                    IsResizeEnabled = false;
+                }
+            }
+        }
+
         public bool IsResizeEnabled
         {
             get => CTRL_ResizeThumb_C.Visibility == Visibility.Visible;
@@ -131,7 +145,6 @@ namespace BBox.Wpf.Controls
                 var visibility = value ? Visibility.Visible : Visibility.Collapsed;
                 if (CTRL_ResizeThumb_C.Visibility != visibility)
                 {
-                    //CTRL_Adorner.Visibility = visibility;
                     CTRL_ResizeThumb_C.Visibility = visibility;
                     CTRL_ResizeThumb_E.Visibility = visibility;
                     CTRL_ResizeThumb_W.Visibility = visibility;

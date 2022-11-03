@@ -43,9 +43,10 @@ namespace BBox.Wpf.Controls
         /// <param name="bbox"></param>
         public void RemoveSelectedBBox()
         {
-            if (m_SelectedBBox != null)
+            if (SelectedBBox != null)
             {
-                BBoxes.Remove(m_SelectedBBox);
+                BBoxes.Remove(SelectedBBox);
+                SelectedBBox = null;
             }
         }
 
@@ -60,6 +61,27 @@ namespace BBox.Wpf.Controls
         /// Add or remove to this collection should also trigger change to canvas.
         /// </summary>
         public ObservableCollection<BBox> BBoxes { get; } = new ObservableCollection<BBox>();
+
+        private BBox m_SelectedBBox;
+        public BBox SelectedBBox
+        {
+            get => m_SelectedBBox;
+            set
+            {
+                if (m_SelectedBBox != value)
+                {
+                    m_SelectedBBox = value;
+
+                    if (m_SelectedBBox != null)
+                    {
+                        if (m_SelectedBBox.CanResize && !m_SelectedBBox.IsResizeEnabled)
+                        {
+                            m_SelectedBBox.IsResizeEnabled = true;
+                        }
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Add bounding box to canvas.
@@ -80,18 +102,24 @@ namespace BBox.Wpf.Controls
         /// <param name="oldBBox">Bounding box to be removed</param>
         private void RemoveBBoxFromView(BBox oldBBox)
         {
-            if (m_SelectedBBox == oldBBox)
+            if (SelectedBBox == oldBBox)
             {
-                m_SelectedBBox = null;
+                SelectedBBox = null;
             }
             oldBBox.Selected -= BBox_Selected;
             CTRL_Canvas.Children.Remove(oldBBox);
         }
 
-        private BBox m_SelectedBBox;
+        private void MoveBBoxToTopOfView(BBox bbox)
+        {
+            CTRL_Canvas.Children.Remove(bbox);
+            CTRL_Canvas.Children.Add(bbox);
+        }
+
         private void BBox_Selected(BBox selectedBBox)
         {
-            m_SelectedBBox = selectedBBox;
+            MoveBBoxToTopOfView(selectedBBox);
+            SelectedBBox = selectedBBox;
             foreach (var child in CTRL_Canvas.Children)
             {
                 if (child is BBox bbox && bbox != selectedBBox)
@@ -200,7 +228,7 @@ namespace BBox.Wpf.Controls
 
         private void CTRL_Image_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            m_SelectedBBox = null;
+            SelectedBBox = null;
             foreach (var child in CTRL_Canvas.Children)
             {
                 if (child is BBox bbox)
