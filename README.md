@@ -1,4 +1,4 @@
-<a href="https://github.com/kengboon/BBox.Wpf/releases"><img src="https://img.shields.io/badge/release-v1.1.0.rc-blue"/></a> <a href="https://github.com/kengboon/BBox.Wpf/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/usage-personal%20%7C%20commercial-brightgreen"/></a> <img src="https://img.shields.io/badge/support-not%20provided-orange"/> <img src="https://img.shields.io/badge/.NET%20Framework-4.x-lightgray"/> <img src="https://img.shields.io/badge/nuget-no%20ETA-red"/> 
+<a href="https://github.com/kengboon/BBox.Wpf/releases"><img src="https://img.shields.io/badge/release-v1.1.0-blue"/></a> <a href="https://github.com/kengboon/BBox.Wpf/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/usage-personal%20%7C%20commercial-brightgreen"/></a> <img src="https://img.shields.io/badge/support-not%20provided-orange"/> <img src="https://img.shields.io/badge/.NET%20Framework-4.x-lightgray"/> <img src="https://img.shields.io/badge/nuget-no%20ETA-red"/> 
 # BBox.Wpf
 Movable, resizable bounding box WPF control on image canvas.
 
