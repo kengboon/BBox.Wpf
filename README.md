@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/release-v1.0.0-blue"/> <img src="https://img.shields.io/badge/usage-personal%20%7C%20commercial-brightgreen"/> <img src="https://img.shields.io/badge/support-not%20provided-orange"/> <img src="https://img.shields.io/badge/.NET%20Framework-4.x-lightgray"/> <img src="https://img.shields.io/badge/nuget-no%20ETA-red"/> 
+<a href="https://github.com/kengboon/BBox.Wpf/releases"><img src="https://img.shields.io/badge/release-v1.1.0.rc-blue"/></a> <a href="https://github.com/kengboon/BBox.Wpf/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/usage-personal%20%7C%20commercial-brightgreen"/></a> <img src="https://img.shields.io/badge/support-not%20provided-orange"/> <img src="https://img.shields.io/badge/.NET%20Framework-4.x-lightgray"/> <img src="https://img.shields.io/badge/nuget-no%20ETA-red"/> 
 # BBox.Wpf
 Movable, resizable bounding box WPF control on image canvas.
 
@@ -13,15 +13,16 @@ Movable, resizable bounding box WPF control on image canvas.
 
 - Moveable & resizable (Optional based on use case)
 - Auto update size and position relative to image source (not misaligned on different window size)
+- Draw bbox on canvas (by cursor)
 
 ## Demo program
-<img width="500" alt="Demo program" src="https://user-images.githubusercontent.com/5046671/197372065-bc01c4a5-7cd2-43aa-a632-3b71c8307ba3.png">
+<img width="500" alt="Demo program" src="https://user-images.githubusercontent.com/5046671/199659771-1c4dfcc7-5c80-4744-9709-bbc8f8313977.png">
 
 ## How to use
 
 1. Get the **BBox.Wpf** project from release page or development branch.
-2. Feel free to modify based on your needs. 👌
-3. Build the project. (Note: The source is targeting .NET Framework 4.7.2, but you should be able to build with any compatible framework version (>=4.x))
+2. Feel free to modify based on your needs - see [license](https://github.com/kengboon/BBox.Wpf/blob/master/LICENSE.md). 👌
+3. Build the project. (Note: The source is targeting .NET Framework 4.7.2, but you should be able to build with any compatible framework version >=4.x)
 4. At your WPF project, add reference to the built DLL.
 5. At your XAML, add namespace ```xmlns:bbox="clr-namespace:BBox.Wpf.Controls;assembly=BBox.Wpf"``` to use controls.
 
