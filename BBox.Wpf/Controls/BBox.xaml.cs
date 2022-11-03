@@ -16,6 +16,8 @@ namespace BBox.Wpf.Controls
         public BBox()
         {
             InitializeComponent();
+            Color = Colors.LimeGreen;
+            Thickness = 2;
         }
 
         public BBox(BBoxType roiType, string displayName)
@@ -43,13 +45,96 @@ namespace BBox.Wpf.Controls
 
         #region Local properties
         protected BBoxType BBoxType;
-        protected string DisplayName = string.Empty;
-        protected double Top { get; set; }
-        protected double Left { get; set; }
-        protected new double Width { get; set; }
-        protected new double Height { get; set; }
-        protected Color Color { get; set; } = Colors.LimeGreen;
-        protected double Thickness { get; set; } = 2;
+
+        public string DisplayName
+        {
+            get => CTRL_Name.Text;
+            set => CTRL_Name.Text = value;
+        }
+
+        private double m_Top;
+        public double Top
+        {
+            get => m_Top;
+            set
+            {
+                if (m_Top != value)
+                {
+                    m_Top = value;
+                    Canvas.SetTop(this, m_Top * m_DisplayRatio);
+                }
+            }
+        }
+
+        private double m_Left;
+        public double Left
+        {
+            get => m_Left;
+            set
+            {
+                if (m_Left != value)
+                {
+                    m_Left = value;
+                    Canvas.SetLeft(this, m_Left * m_DisplayRatio);
+                }
+            }
+        }
+
+        private double m_Width;
+        protected new double Width
+        {
+            get => m_Width;
+            set
+            {
+                if (m_Width != value)
+                {
+                    m_Width = value;
+                    UpdateDisplay(m_DisplayRatio);
+                }
+            }
+        }
+
+        private double m_Height;
+        protected new double Height
+        {
+            get => m_Height;
+            set
+            {
+                if (m_Height != value)
+                {
+                    m_Height = value;
+                    UpdateDisplay(m_DisplayRatio);
+                }
+            }
+        }
+
+        private Color m_Color;
+        protected Color Color
+        {
+            get => m_Color;
+            set
+            {
+                if (m_Color != value)
+                {
+                    m_Color = value;
+                    CTRL_Shape.BorderBrush = new SolidColorBrush(m_Color);
+                }
+            }
+        }
+
+        private double m_Thickness;
+        public double Thickness
+        {
+            get => m_Thickness;
+            set
+            {
+                if (m_Thickness != value)
+                {
+                    m_Thickness = value;
+                    CTRL_Shape.BorderThickness = new Thickness(m_Thickness);
+                }
+            }
+        }
 
         private double m_DisplayRatio = 1;
         #endregion
@@ -98,7 +183,7 @@ namespace BBox.Wpf.Controls
             TRANS_Rotate.CenterY = adornerHeight / 2;
         }
 
-        private void UpdateFromDisplay(double displayTop, double displayLeft, double displayWidth, double displayHeight)
+        internal void UpdateFromDisplay(double displayTop, double displayLeft, double displayWidth, double displayHeight)
         {
             if (displayWidth < 0 ||
                 displayHeight < 0 ||
@@ -117,7 +202,6 @@ namespace BBox.Wpf.Controls
                 Left = Math.Round(displayLeft * ratio, 3);
                 Width = Math.Round(displayWidth * ratio, 3);
                 Height = Math.Round(displayHeight * ratio, 3);
-                UpdateDisplay(m_DisplayRatio);
             }
         }
         #endregion

@@ -2,7 +2,8 @@
 {
     public enum BBoxType
     {
-        Rectangle,
+        None = -1,
+        Rectangle = 0,
         Ellipse,
     }
 }

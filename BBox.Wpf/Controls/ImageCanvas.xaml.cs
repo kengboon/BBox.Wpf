@@ -92,7 +92,8 @@ namespace BBox.Wpf.Controls
         {
             CTRL_Canvas.Children.Add(newBBox);
             newBBox.Selected += BBox_Selected;
-            newBBox.UpdateDisplay(CTRL_Canvas.ActualWidth / ImageSource.Width);
+            m_DisplayRatio = CTRL_Canvas.ActualWidth / ImageSource.Width;
+            newBBox.UpdateDisplay(m_DisplayRatio);
         }
 
         /// <summary>
@@ -184,6 +185,8 @@ namespace BBox.Wpf.Controls
         #endregion
 
         #region Container
+        private double m_DisplayRatio = 1;
+
         /// <summary>
         /// Size changed of the Grid. Required update the display ratio of all bounding boxes.
         /// </summary>
@@ -194,11 +197,12 @@ namespace BBox.Wpf.Controls
             var container = sender as FrameworkElement;
             if (container != null)
             {
+                m_DisplayRatio = container.ActualWidth / ImageSource.Width;
                 foreach (var child in CTRL_Canvas.Children)
                 {
                     if (child is BBox bbox)
                     {
-                        bbox.UpdateDisplay(container.ActualWidth / ImageSource.Width);
+                        bbox.UpdateDisplay(m_DisplayRatio);
                     }
                 }
             }
@@ -235,6 +239,72 @@ namespace BBox.Wpf.Controls
                 {
                     bbox.IsResizeEnabled = false;
                 }
+            }
+        }
+
+        public BBoxType BBoxTypeToAdd { get; set; } = BBoxType.None;
+        public string BBoxNameToAdd { get; set; } = string.Empty;
+
+        private void CTRL_EditOverlay_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (BBoxTypeToAdd != BBoxType.None)
+            {
+                var control = sender as FrameworkElement;
+                control.CaptureMouse();
+                control.Tag = true;
+
+                var pos = e.GetPosition(control);
+                var bbox = new BBox(BBoxTypeToAdd, !string.IsNullOrEmpty(BBoxNameToAdd) ? BBoxNameToAdd : BBoxTypeToAdd.ToString());
+                BBoxes.Add(bbox);
+
+                bbox.UpdateFromDisplay(pos.Y, pos.X, 1, 1);
+                SelectedBBox = bbox;
+            }
+            else
+            {
+                SelectedBBox = null;
+                foreach (var bbox in BBoxes)
+                {
+                    bbox.IsResizeEnabled = false;
+                }
+            }
+        }
+
+        private void CTRL_EditOverlay_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (BBoxTypeToAdd != BBoxType.None && SelectedBBox != null)
+            {
+                var control = sender as FrameworkElement;
+                control.ReleaseMouseCapture();
+                control.Tag = null;
+
+                SelectedBBox.CanResize = true;
+                SelectedBBox.IsResizeEnabled = true;
+            }
+        }
+
+        private void CTRL_EditOverlay_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            var control = sender as FrameworkElement;
+            if (control.Tag != null && (bool)control.Tag && SelectedBBox != null)
+            {
+                var pos = e.GetPosition(control);
+                var top = SelectedBBox.Top * m_DisplayRatio;
+                var left = SelectedBBox.Left * m_DisplayRatio;
+                var width = pos.X - left;
+                var height = pos.Y - top;
+                if (width > 0 && height > 0)
+                {
+                    SelectedBBox.UpdateFromDisplay(top, left, width, height);
+                }
+            }
+        }
+
+        private void CTRL_Canvas_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                RemoveSelectedBBox();
             }
         }
     }

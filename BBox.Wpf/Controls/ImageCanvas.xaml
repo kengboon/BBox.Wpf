@@ -9,13 +9,20 @@
         <Canvas x:Name="CTRL_Canvas"
                 Width="{Binding Path=ActualWidth, ElementName=CTRL_Image}"
                 Height="{Binding Path=ActualHeight, ElementName=CTRL_Image}"
-                SizeChanged="CTRL_Canvas_SizeChanged">
+                SizeChanged="CTRL_Canvas_SizeChanged"
+                KeyDown="CTRL_Canvas_KeyDown">
             <Image x:Name="CTRL_Image"
                    Canvas.Left="0" Canvas.Top="0"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    MaxHeight="{Binding Path=ActualHeight, ElementName=CTRL_Container}"
                    MaxWidth="{Binding Path=ActualWidth, ElementName=CTRL_Container}"
                    MouseLeftButtonDown="CTRL_Image_MouseLeftButtonDown"/>
+            <Rectangle x:Name="CTRL_EditOverlay" Fill="Transparent"
+                       Width="{Binding Path=ActualWidth, ElementName=CTRL_Canvas}"
+                       Height="{Binding Path=ActualHeight, ElementName=CTRL_Canvas}"
+                       MouseLeftButtonDown="CTRL_EditOverlay_MouseLeftButtonDown"
+                       MouseLeftButtonUp="CTRL_EditOverlay_MouseLeftButtonUp"
+                       MouseMove="CTRL_EditOverlay_MouseMove"/>
         </Canvas>
     </Grid>
 </UserControl>
